@@ -7,13 +7,8 @@
     version="2.0">
 	<managed-bean>
 		<managed-bean-name>loginBean</managed-bean-name>
-		<managed-bean-class>com.tutorial.Login</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>userBean</managed-bean-name>
 		<managed-bean-class>com.tutorial.User</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>login.xhtml</display-name>
