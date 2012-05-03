@@ -1,4 +1,4 @@
-package com.tutorial;
+package test.com.tutorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +8,20 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import test.com.tutorial.TextQuestion;
+import com.tutorial.Form;
+import com.tutorial.NumberQuestion;
+import com.tutorial.Question;
+import com.tutorial.TextQuestion;
+import com.tutorial.User;
+
 
 
 public class FormBeanTest {
-	private FormBean form;
+	private Form form;
 
 	@Before
 	public void start(){
-		this.form=new FormBean();
+		this.form=new Form();
 		this.form.setId(new Integer(1));
 		User user = new User();
 		user.setId(new Integer(1));

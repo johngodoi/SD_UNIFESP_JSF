@@ -1,6 +1,5 @@
-package test.com.tutorial;
+package com.tutorial;
 
-import com.tutorial.Question;
 
 public class TextQuestion extends Question {
 

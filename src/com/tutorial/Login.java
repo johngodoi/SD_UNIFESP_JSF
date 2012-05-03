@@ -5,7 +5,7 @@
 
 package com.tutorial;
 
-public class LoginBean
+public class Login
 {
     private String name;
     private String password;

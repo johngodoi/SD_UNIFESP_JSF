@@ -2,7 +2,7 @@ package com.tutorial;
 
 import java.util.ArrayList;
 
-public class FormBean {
+public class Form {
 	private Integer id;
 	private User user;
 	private ArrayList<Question> questionList;
