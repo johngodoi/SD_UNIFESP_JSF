@@ -19,6 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import com.tutorial.Form;
+
 public class ParserXML {
 
 	private InputStream is;
@@ -41,8 +43,9 @@ public class ParserXML {
 		docBuilder = dbf.newDocumentBuilder();
 	}
 	
-	public void parse(String xml) throws ParserConfigurationException,
+	public Form parse(String xml) throws ParserConfigurationException,
 			SAXException, IOException, XPathExpressionException {
+		Form form = new Form();
 		this.setUpDocumentBuilder();
 		
 		Document doc = docBuilder.parse(is);
@@ -106,6 +109,7 @@ public class ParserXML {
 		String expression = "manufacturer";
 		Node manufacturerNode = (Node) xpath.evaluate(expression, expression,
 				XPathConstants.NODE);
+		return form;
 
 		// NodeList resultado = xPath.selec
 
