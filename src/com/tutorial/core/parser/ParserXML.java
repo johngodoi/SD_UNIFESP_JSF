@@ -43,12 +43,25 @@ public class ParserXML {
 		docBuilder = dbf.newDocumentBuilder();
 	}
 	
-	public Form parse(String xml) throws ParserConfigurationException,
-			SAXException, IOException, XPathExpressionException {
+	public Form parse(String xml) {
 		Form form = new Form();
-		this.setUpDocumentBuilder();
+		try {
+			this.setUpDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		Document doc = docBuilder.parse(is);
+		Document doc=null;
+		try {
+			doc = docBuilder.parse(is);
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// mudando o valor de 'title'
 
@@ -107,8 +120,13 @@ public class ParserXML {
 
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		String expression = "manufacturer";
-		Node manufacturerNode = (Node) xpath.evaluate(expression, expression,
-				XPathConstants.NODE);
+		try {
+			Node manufacturerNode = (Node) xpath.evaluate(expression, expression,
+					XPathConstants.NODE);
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return form;
 
 		// NodeList resultado = xPath.selec
