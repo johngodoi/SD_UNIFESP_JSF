@@ -1,12 +1,16 @@
 package com.tutorial.core.parser;
 
-import java.io.File;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
@@ -16,29 +20,41 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class ParserXML {
+
+	private InputStream is;
+	private DocumentBuilderFactory dbf;
+
+	private DocumentBuilder docBuilder;
 	
+	public ParserXML(){
+		this.is=null;
+	}
 	
-	public void parse() throws ParserConfigurationException, SAXException,
-			IOException {
-		DocumentBuilderFactory dbf =
+	private void convertStringToInputStream(String xml) throws UnsupportedEncodingException{
+			this.is = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+	}
+	
+	private void setUpDocumentBuilder() throws ParserConfigurationException{
 
-		DocumentBuilderFactory.newInstance();
+		dbf = DocumentBuilderFactory.newInstance();
 
-		DocumentBuilder docBuilder = dbf.newDocumentBuilder();
-
-		Document doc = docBuilder.parse(new File("arquivo.xml"));
+		docBuilder = dbf.newDocumentBuilder();
+	}
+	
+	public void parse(String xml) throws ParserConfigurationException,
+			SAXException, IOException, XPathExpressionException {
+		this.setUpDocumentBuilder();
+		
+		Document doc = docBuilder.parse(is);
 
 		// mudando o valor de 'title'
 
 		Element htmlTag = doc.getDocumentElement();
 
-		Element headTag =
+		Element headTag = (Element) htmlTag.getElementsByTagName("head").item(0);
+		
 
-		(Element) htmlTag.getElementsByTagName("head").item(0);
-
-		Element titleTag =
-
-		(Element) headTag.getElementsByTagName("title").item(0);
+		Element titleTag = (Element) headTag.getElementsByTagName("title").item(0);
 
 		titleTag.setTextContent("Novo título");
 
@@ -62,9 +78,7 @@ public class ParserXML {
 
 		p3Tag.setTextContent("Fim !");
 
-		Element bodyTag =
-
-		(Element) htmlTag.getElementsByTagName("body").item(0);
+		Element bodyTag = (Element) htmlTag.getElementsByTagName("body").item(0);
 
 		bodyTag.appendChild(p1Tag);
 
@@ -90,8 +104,8 @@ public class ParserXML {
 
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		String expression = "manufacturer";
-		// Node manufacturerNode = (Node) xpath.evaluate(expression, widgetNode,
-		// XPathConstants.NODE);
+		Node manufacturerNode = (Node) xpath.evaluate(expression, expression,
+				XPathConstants.NODE);
 
 		// NodeList resultado = xPath.selec
 
