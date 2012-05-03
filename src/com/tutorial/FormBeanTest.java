@@ -1,4 +1,4 @@
-package test.com.tutorial;
+package com.tutorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,8 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.tutorial.FormBean;
-import com.tutorial.Question;
-import com.tutorial.User;
+import test.com.tutorial.TextQuestion;
+
 
 public class FormBeanTest {
 	private FormBean form;
