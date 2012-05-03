@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.tutorial.Form;
+import com.tutorial.core.parser.ParserXML;
+
 /**
  * Servlet implementation class SubmitForm
  */
@@ -23,14 +26,18 @@ public class SubmitForm extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    public static String getUrl(HttpServletRequest req) {
-        String reqUrl = req.getRequestURL().toString();
-        System.out.println("entrei");
-        String queryString = req.getQueryString();   // d=789
-        if (queryString != null) {
-            reqUrl += "?"+queryString;
-        }
-        return reqUrl;
+    public static String getXml(HttpServletRequest req) {
+    	
+    	String xml = req.getParameter("xml");
+    	System.out.println(xml);
+//        String reqUrl = req.getRequestURL().toString();
+//        System.out.println("entrei");
+//        String queryString = req.getQueryString();   // d=789
+//        if (queryString != null) {
+//            reqUrl += "?"+queryString;
+//        }
+//        System.out.println(queryString);
+        return xml;
     }
     
     //TODO verificar usos
@@ -46,8 +53,11 @@ public class SubmitForm extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		this.getUrl(request);
+		String xmlDataString = this.getXml(request);
+		ParserXML parserXML = new ParserXML();
+		Form form = parserXML.parse(xmlDataString);
+		FormDomainService formService = new FormDomainService();
+		formService.save(form);
 	}
 
 	/**
