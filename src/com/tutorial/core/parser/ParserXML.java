@@ -46,6 +46,12 @@ public class ParserXML {
 	public Form parse(String xml) {
 		Form form = new Form();
 		try {
+			this.convertStringToInputStream(xml);
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
 			this.setUpDocumentBuilder();
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +70,7 @@ public class ParserXML {
 		}
 
 		// mudando o valor de 'title'
-
+/*
 		Element htmlTag = doc.getDocumentElement();
 
 		Element headTag = (Element) htmlTag.getElementsByTagName("head").item(0);
@@ -126,7 +132,7 @@ public class ParserXML {
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return form;
 
 		// NodeList resultado = xPath.selec

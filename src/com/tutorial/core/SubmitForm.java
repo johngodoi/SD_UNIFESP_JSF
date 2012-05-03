@@ -30,13 +30,6 @@ public class SubmitForm extends HttpServlet {
     	
     	String xml = req.getParameter("xml");
     	System.out.println(xml);
-//        String reqUrl = req.getRequestURL().toString();
-//        System.out.println("entrei");
-//        String queryString = req.getQueryString();   // d=789
-//        if (queryString != null) {
-//            reqUrl += "?"+queryString;
-//        }
-//        System.out.println(queryString);
         return xml;
     }
     
@@ -54,26 +47,11 @@ public class SubmitForm extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String xmlDataString = this.getXml(request);
+//		System.out.println(xmlDataString);
 		ParserXML parserXML = new ParserXML();
 		Form form = parserXML.parse(xmlDataString);
 		FormDomainService formService = new FormDomainService();
 		formService.save(form);
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("get");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("post");
 	}
 
 }
